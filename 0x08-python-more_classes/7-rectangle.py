@@ -193,7 +193,6 @@ if type(value) is int:
         """
         Returns the representation of the Rectangle.
         """
-
 w = str(eval('self.width'))
         h = str(eval('self.height'))
 
