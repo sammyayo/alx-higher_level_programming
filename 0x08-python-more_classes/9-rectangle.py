@@ -132,12 +132,12 @@ self.__check_valid_height(value)
             or equal to 0, `False` otherwise.
         """
 
-        if value >= 0:
+if value >= 0:
             return True
 
         return False
 
-def area(self):
+    def area(self):
         """
         Computes the area of a Rectangle.
         Returns:
@@ -197,10 +197,13 @@ def area(self):
             of the Rectangle class.
         """
 
-        if isinstance(rect_1, Rectangle) is False:
+if isinstance(rect_1, Rectangle) is False:
             raise TypeError('rect_1 must be an instance of Rectangle')
 
-rct1_area = rect_1.area()
+        if isinstance(rect_2, Rectangle) is False:
+            raise TypeError('rect_2 must be an instance of Rectangle')
+
+        rct1_area = rect_1.area()
         rct2_area = rect_2.area()
 
         if rct1_area >= rct2_area:
