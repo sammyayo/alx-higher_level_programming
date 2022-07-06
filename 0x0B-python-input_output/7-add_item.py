@@ -1,28 +1,39 @@
 #!/usr/bin/python3
-"""
-This program take the file add_item.json, and add the
-parameters to the list inside this file.
-- If the file doesn't exist create it.
-- If no exist parameters do nothing or create the list if the file is empty.
-"""
+"""This documents gather stats from stdin"""
+import sys
 
-from sys import argv
-from os.path import exists
 
-save_to_json_file = __import__("5-save_to_json_file").save_to_json_file
-load_from_json_file = __import__("6-load_from_json_file").load_from_json_file
+def print_pretty(size, code_dict):
+    """parse important data"""
+    print("File size: {}".format(size))
+    for key, value in sorted(code_dict.items()):
+        if (value != 0):
+            print("{}: {}".format(key, value))
 
-namefile = "add_item.json"
-argc = len(argv)
-
-file_list = []
-
-if exists(namefile):
-    file_list = load_from_json_file(namefile)
-
-if (argc == 1):
-    save_to_json_file(file_list, namefile)
-else:
-    for index in range(1, argc):
-        file_list.append(argv[index])
-    save_to_json_file(file_list, namefile)
+if __name__ == '__main__':
+    """init code to print the parsed data"""
+    size = 0
+    code_dict = {
+        "200": 0,
+        "301": 0,
+        "400": 0,
+        "401": 0,
+        "403": 0,
+        "404": 0,
+        "405": 0,
+        "500": 0
+    }
+    try:
+        line_counter = 0
+        for line in sys.stdin:
+            line_counter += 1
+            code = line.split()[7]
+            size += int(line.split()[8])
+            if code in code_dict:
+                code_dict[code] += 1
+            if (line_counter % 10 == 0):
+                print_pretty(size, code_dict)
+        print_pretty(size, code_dict)
+    except KeyboardInterrupt:
+        print_pretty(size, code_dict)
+        raise
