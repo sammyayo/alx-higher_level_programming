@@ -221,8 +221,7 @@ s1 = ("to_json_string() missing 1 required positional argument: " +
             list_output = Rectangle.from_json_string({1: 'Hello', 2: 'Hi'})
         self.assertEqual("json_string must be a string", str(x.exception))
 
-
-    def test_17_2(self):
+     def test_17_2(self):
         """Test static method from_json_string with wrong args."""
 
         s1 = ("from_json_string() missing 1" +
@@ -235,7 +234,7 @@ s1 = ("to_json_string() missing 1 required positional argument: " +
             Rectangle.from_json_string("Hi", 98)
         self.assertEqual(s2, str(x.exception))
 
-    def test_18_0(self):
+     def test_18_0(self):
         """Test class method create with normal types."""
 
         r1 = Rectangle(3, 5, 1)
@@ -318,7 +317,7 @@ s1 = ("to_json_string() missing 1 required positional argument: " +
         with open("Square.csv", "r") as f:
             self.assertEqual(len(f.read()), len(res))
 
-def test_20_1(self):
+    def test_20_1(self):
         """Test class method save_to_file_csv with errors."""
 
         with self.assertRaises(AttributeError) as x:
