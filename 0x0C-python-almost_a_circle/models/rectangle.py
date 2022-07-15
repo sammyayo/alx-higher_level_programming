@@ -149,8 +149,7 @@ x.setter
             for key, value in kwargs.items():
                 if key == "id":
                     if type(value) != int and value is not None:
-                        raise
-TypeError("id must be an integer")
+                        raise TypeError("id must be an integer")
                     self.id = value
                 if key == "width":
                     self.width = value
